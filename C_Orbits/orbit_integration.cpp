@@ -31,11 +31,16 @@ point Orbit_integration::Euler::calculate_single_body_acceleration(int body_inde
 void Orbit_integration::Euler::compute_velocity()
 {
 	int body_index = 0;
-	for (auto target_body = m_bodies.begin(); target_body != m_bodies.end(); *target_body++, body_index++)
+#pragma omp for
+	for (int i = 0; i < m_bodies.size(); i++)
 	{
+		auto target_body = &m_bodies[i];
 		point acceleration = Orbit_integration::Euler::calculate_single_body_acceleration(body_index);
+#pragma omp atomic
 		target_body->velocity.x += acceleration.x * m_time_step;
+#pragma omp atomic
 		target_body->velocity.y += acceleration.y * m_time_step;
+#pragma omp atomic
 		target_body->velocity.z += acceleration.z * m_time_step;
 	}
 };
