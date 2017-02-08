@@ -26,23 +26,24 @@ def read_bodies(files = []):
     bodies = []
     for file in files:
         with open(file) as f: 
-            name = str(f.readline())
+            name = str(f.readline()).strip('\n')
             x = []
             y = []
             z = []
 
             for line in f:
-                input = line.split(',')
+                input = line.strip('\n').split(',')
                 x.append(float(input[0]))
                 y.append(float(input[1]))                
                 z.append(float(input[2]))
         bodies.append({"name":str(name), "x":x, "y":y, "z":z})
-        return bodies
+
+    return bodies
         
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print ("Please include list of body files as arguments")
-    names = sys.argv[1].split(" ")
+    names = sys.argv[1:]
     bodies = read_bodies(names)
     plot_output(bodies)
     
