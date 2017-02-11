@@ -97,7 +97,7 @@ class RK4_integrator:
                 k1.x = tmp * (external_body.location.x - target_body.location.x)
                 k1.y = tmp * (external_body.location.y - target_body.location.y)
                 k1.z = tmp * (external_body.location.z - target_body.location.z)
-	    		
+
                 #k2 - acceleration 0.5 timesteps in the future based on k1 acceleration value
                 tmp_vel = partial_step(target_body.velocity, k1, 0.5)
                 tmp_loc = partial_step(target_body.location, tmp_vel, 0.5 * self.time_step)
@@ -202,14 +202,25 @@ uranus = {"location":point(0,2.8e12,0), "mass":8.7e25, "velocity":point(6835,0,0
 neptune = {"location":point(0,4.5e12,0), "mass":1e26, "velocity":point(5477,0,0)}
 pluto = {"location":point(0,3.7e12,0), "mass":1.3e22, "velocity":point(4748,0,0)}
 
+sat =  { "location": point(0, 1.0e10, 0), "mass":1e23, "velocity":point(3e4, 0, 0)}
+
 if __name__ == "__main__":
 
     #build list of planets in the simulation, or create your own
     bodies = [
         body( location = sun["location"], mass = sun["mass"], velocity = sun["velocity"], name = "sun"),
-        body( location = mercury["location"], mass = mercury["mass"], velocity = mercury["velocity"], name = "mercury"),
+        body( location = mercury["location"], mass = mercury["mass"], velocity = mercury["velocity"], name = "sun"),
+        body( location = venus["location"], mass = venus["mass"], velocity = venus["velocity"], name = "sun"),
+        body( location = earth["location"], mass = earth["mass"], velocity = earth["velocity"], name = "earth"),
+        body( location = mars["location"], mass = mars["mass"], velocity = mars["velocity"], name = "mars")
+        body( location = saturn["location"], mass = saturn["mass"], velocity = saturn["velocity"], name = "saturn"),
+        body( location = jupiter["location"], mass = jupiter["mass"], velocity = jupiter["velocity"], name = "jupiter"),
+        body( location = uranus["location"], mass = uranus["mass"], velocity = uranus["velocity"], name = "uranus"),
+        body( location = neptune["location"], mass = neptune["mass"], velocity = neptune["velocity"], name = "neptune"),
+        body( location = pluto["location"], mass = pluto["mass"], velocity = pluto["velocity"], name = "pluto"),
+
         ]
     
-    integrator = RK4_integrator(time_step = 1000, bodies = bodies)
-    motions = run_simulation(integrator, number_of_steps = 1e6, report_freq = 1e4)
+    integrator = RK4_integrator(time_step = 10, bodies = bodies)
+    motions = run_simulation(integrator, number_of_steps = 1e5, report_freq = 1e4)
     plot_output(motions) #, "mercury_euler.png")
