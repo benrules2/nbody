@@ -6,27 +6,31 @@ void run_simulation(Integrator integrator, int iterations, int report_frequency)
 	for (auto i = 0; i < iterations; i++)
 	{
 		if (i % report_frequency == 0)
-			integrator.record_state();
+			record_state(integrator.get_bodies());
 		integrator.compute_gravity_step();
 	}
+	output_states(integrator.get_bodies());
 }
 
 int main(int argc, char *argv[])
 {
 	std::vector<body> bodies;
-
-	body sun{ { 0, 0, 0 }, 2e30, { 0,0,0 }, "sun" };
-	bodies.push_back(sun);
-
-	body earth{ {0, 1.5e11, 0}, 6e24, { 30000,0,0 }, "earth"};
-	bodies.push_back(earth);
 	
-	body jupiter{ { 7.7e11,0,0}, 1e28, { 0,13000,0 }, "jupiter" };
-	bodies.push_back(jupiter);
-
-	Orbit_integration::RK4 euler_orbit(bodies, 100);
+	bodies.push_back(solar_system::sun);
+	//bodies.push_back(solar_system::mercury);
+	bodies.push_back(body{ { 0, 1.0e10, 0 }, 1e23,{ 3e4, 0, 0 }, "sat" });
+	//bodies.push_back(solar_system::venus);
+	//bodies.push_back(solar_system::earth);
+	//bodies.push_back(solar_system::mars);
+	//bodies.push_back(solar_system::saturn);
+	//bodies.push_back(solar_system::jupiter);
+	//bodies.push_back(solar_system::uranus);
+	//bodies.push_back(solar_system::neptune);
+	//bodies.push_back(solar_system::pluto);
+	//
+	Orbit_integration::Euler orbit(bodies, 1);
 	
-	run_simulation(euler_orbit, (int)1e7, 1e4);
+	run_simulation(orbit, (int)1e7, 100);
 
 	printf("Done\n");
 

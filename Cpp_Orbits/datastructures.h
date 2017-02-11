@@ -53,4 +53,5 @@ struct body
 	double mass;
 	point velocity;
 	std::string name;
+	std::vector<point> locations;
 };
