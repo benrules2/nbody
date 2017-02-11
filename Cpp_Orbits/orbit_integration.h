@@ -61,8 +61,8 @@ namespace Orbit_integration
 	class Integrator
 	{
 	public:
-		virtual void compute_gravity_step() = 0 {};
-		virtual std::vector<body>& get_bodies() = 0 {};
+		virtual void compute_gravity_step() = 0;
+		virtual std::vector<body>& get_bodies() = 0;
 	};
 
 	class Euler : virtual Integrator
