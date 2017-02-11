@@ -61,14 +61,14 @@ namespace Orbit_integration
 	class Integrator
 	{
 	public:
-		virtual void compute_gravity_step() = 0 {};
-		virtual std::vector<body>& get_bodies() = 0 {};
+		virtual void compute_gravity_step() = 0;
+		virtual std::vector<body>& get_bodies() = 0;
 	};
 
 	class Euler : virtual Integrator
 	{
 	public:
-		Euler::Euler(std::vector<body> bodies, double time_step = 1) :
+		Euler(std::vector<body> bodies, double time_step = 1) :
 			m_bodies(bodies),
 			m_time_step(time_step) 
 		{};
@@ -89,7 +89,7 @@ namespace Orbit_integration
 	class RK4 : virtual public Integrator
 	{
 	public:
-		RK4::RK4(std::vector<body> bodies, double time_step = 1) :
+		RK4(std::vector<body> bodies, double time_step = 1) :
 			m_bodies(bodies),
 			m_time_step(time_step)
 		{};

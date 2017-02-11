@@ -12,7 +12,7 @@ The C++ program will be written for performance and additional integration techn
 
 C++:
 
-To access C++ application, navigate to the C_Orbits directory.
+To access C++ application, navigate to the Cpp_Orbits directory.
 
 A C++ N body simulation application
 
