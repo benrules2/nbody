@@ -212,13 +212,12 @@ if __name__ == "__main__":
         body( location = mercury["location"], mass = mercury["mass"], velocity = mercury["velocity"], name = "sun"),
         body( location = venus["location"], mass = venus["mass"], velocity = venus["velocity"], name = "sun"),
         body( location = earth["location"], mass = earth["mass"], velocity = earth["velocity"], name = "earth"),
-        body( location = mars["location"], mass = mars["mass"], velocity = mars["velocity"], name = "mars")
+        body( location = mars["location"], mass = mars["mass"], velocity = mars["velocity"], name = "mars"),
         body( location = saturn["location"], mass = saturn["mass"], velocity = saturn["velocity"], name = "saturn"),
         body( location = jupiter["location"], mass = jupiter["mass"], velocity = jupiter["velocity"], name = "jupiter"),
         body( location = uranus["location"], mass = uranus["mass"], velocity = uranus["velocity"], name = "uranus"),
         body( location = neptune["location"], mass = neptune["mass"], velocity = neptune["velocity"], name = "neptune"),
-        body( location = pluto["location"], mass = pluto["mass"], velocity = pluto["velocity"], name = "pluto"),
-
+        body( location = pluto["location"], mass = pluto["mass"], velocity = pluto["velocity"], name = "pluto")
         ]
     
     integrator = RK4_integrator(time_step = 10, bodies = bodies)
